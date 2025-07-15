@@ -1,0 +1,11 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.log
+*.zip
+*.bak
+*.tmp
+*.swp
+*.DS_Store
+.idea/
+.vscode/
