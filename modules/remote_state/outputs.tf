@@ -1,21 +1,15 @@
 output "bucket_id" {
-  description = "ID of the S3 bucket"
-  value       = aws_s3_bucket.this.id
+  value = aws_s3_bucket.tf_state.id
 }
 
 output "bucket_arn" {
-  description = "ARN of the S3 bucket"
-  value       = aws_s3_bucket.this.arn
+  value = aws_s3_bucket.tf_state.arn
 }
 
-output "bucket_domain_name" {
-  description = "Domain name of the S3 bucket"
-  value       = aws_s3_bucket.this.bucket_domain_name
-}
 output "table_name" {
-  value = aws_dynamodb_table.this.name
+  value = aws_dynamodb_table.tf_lock.id
 }
 
 output "table_arn" {
-  value = aws_dynamodb_table.this.arn
+  value = aws_dynamodb_table.tf_lock.arn
 }

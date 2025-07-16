@@ -3,18 +3,15 @@ provider "aws" {
 }
 module "remote_state" {
   source              = "./modules/remote_state"
-  bucket_name         = "my-terraform-state-bucket"
-  dynamodb_table_name = "my-terraform-locks"
-  tags = {
-    Project     = "SecureApp"
-    Environment = "dev"
-  }
+  bucket_name         = "fatma-terraform-state-2025"
+  dynamodb_table_name = "terraform-locks"
 }
-# module "vpc" {
-#   source     = "./modules/vpc"
-#   cidr_block = "10.0.0.0/16"
-#   name       = "secure-webapp-vpc"
-# }
+
+module "vpc" {
+  source     = "./modules/vpc"
+  cidr_block = "10.0.0.0/16"
+  name       = "secure-webapp-vpc"
+}
 # module "subnet" {
 #   source                = "./modules/subnet"
 #   vpc_id                = module.vpc.vpc_id
