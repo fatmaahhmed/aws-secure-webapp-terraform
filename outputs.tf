@@ -42,3 +42,6 @@ output "backend_instance_private_ips" {
   value       = module.ec2_backend.private_ips
 }
 
+output "backend_alb_dns_name" {
+  value = module.alb_backend.alb_dns_name
+}

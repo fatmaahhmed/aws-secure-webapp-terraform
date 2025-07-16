@@ -152,10 +152,14 @@ module "ec2_backend" {
     aws_security_group.ssh_sg.id
   ]
   key_name           = "id_rsa"
-  user_data          = file("scripts/install-backend.sh")
+  user_data = templatefile("${path.module}/scripts/install-nginx.tpl", {
+    backend_alb_dns = module.alb_backend.alb_dns_name
+  })
+
   instance_count     = 2
   attach_to_alb      = true
   target_group_arn   = module.alb_backend.target_group_arn
+  
 }
 
 data "aws_ami" "ubuntu" {

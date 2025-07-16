@@ -20,3 +20,14 @@ resource "aws_lb_target_group_attachment" "attach" {
   target_id          = aws_instance.this[count.index].id
   port               = var.app_port
 }
+
+
+data "template_file" "nginx_user_data" {
+  template = file("${path.module}/scripts/install-nginx.sh")
+
+  vars = {
+    internal_alb_dns = module.alb_backend.alb_dns_name
+  }
+
+  # khalahaa variable bytakhed mn al output asln ally hwa mn alp daa 
+}

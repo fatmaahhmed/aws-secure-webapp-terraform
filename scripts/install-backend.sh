@@ -18,6 +18,7 @@ def hello():
 app.run(host='0.0.0.0', port=80)
 EOF
 
+
 # Run the app in background
 sudo fuser -k 80/tcp || true
 sudo nohup python3 /home/ubuntu/app.py &
