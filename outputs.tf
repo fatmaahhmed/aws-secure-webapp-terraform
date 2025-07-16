@@ -10,3 +10,6 @@ output "dynamodb_table_name" {
 output "dynamodb_table_arn" {
   value = module.remote_state.table_arn
 }
+output "vpc_id" {
+  value = module.vpc.vpc_id
+}
