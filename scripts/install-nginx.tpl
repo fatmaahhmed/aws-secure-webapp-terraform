@@ -1,3 +1,4 @@
+# '/root/aws-secure-webapp/scripts/install-nginx.tpl'
 #!/bin/bash
 sudo apt update -y
 sudo apt install -y nginx -y
