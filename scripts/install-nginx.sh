@@ -1,17 +1,15 @@
 #!/bin/bash
 sudo apt update -y
 sudo apt install -y nginx
-echo "<h1>Hello from NGINX</h1>" | sudo tee /var/www/html/index.html
-# cat the content of "/root/.ssh/id_rsa" of host machine to machine
+
+# Use hardcoded internal ALB DNS from your setup
 cat <<EOF | sudo tee /etc/nginx/sites-available/default
 server {
     listen 80;
     location / {
-        proxy_pass http://${backend_alb_dns};
+        proxy_pass http://internal-backend-alb-2037941868.us-east-2.elb.amazonaws.com;
     }
 }
 EOF
-sudo systemctl restart nginx
-cat /root/.ssh/id_rsa | sudo tee /root/.ssh/id_rsa > /dev/null
-sudo chmod 600 /root/.ssh/id_rsa
 
+sudo systemctl restart nginx

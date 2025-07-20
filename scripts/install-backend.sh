@@ -13,12 +13,10 @@ from flask import Flask
 app = Flask(__name__)
 @app.route("/")
 def hello():
-    return "Hello from Flask"
-
+    return "Hello from Backend Flask!"
 app.run(host='0.0.0.0', port=80)
 EOF
 
-
-# Run the app in background
+# Make sure no other service is using port 80 and run the app
 sudo fuser -k 80/tcp || true
-sudo nohup python3 /home/ubuntu/app.py &
+nohup python3 /home/ubuntu/app.py > /home/ubuntu/flask.log 2>&1 &

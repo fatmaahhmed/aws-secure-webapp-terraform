@@ -1,11 +1,11 @@
 provider "aws" {
   region = "us-east-2"
 }
-module "remote_state" {
-  source              = "./modules/remote_state"
-  bucket_name         = "fatma-terraform-state-2025-1"
-  dynamodb_table_name = "terraform-locks"
-}
+# module "remote_state" {
+#   source              = "./modules/remote_state"
+#   bucket_name         = "fatma-terraform-state-2025-1"
+#   dynamodb_table_name = "terraform-locks"
+# }
 
 module "vpc" {
   source     = "./modules/vpc"
@@ -141,13 +141,13 @@ module "ec2_proxy" {
   attach_to_alb      = true
   target_group_arn   = module.alb_proxy.target_group_arn
 }
-data "template_file" "nginx_user_data" {
-  template = file("${path.module}/scripts/install-nginx.tpl")
+# data "template_file" "nginx_user_data" {
+#   template = file("${path.module}/scripts/install-nginx.tpl")
 
-  vars = {
-    backend_alb_dns = module.alb_backend.alb_dns_name
-  }
-}
+#   vars = {
+#     backend_alb_dns = module.alb_backend.alb_dns_name
+#   }
+# }
 
 module "ec2_backend" {
   source             = "./modules/ec2"
@@ -159,8 +159,7 @@ module "ec2_backend" {
     aws_security_group.ssh_sg.id
   ]
   key_name           = "id_rsa"
-  user_data          = data.template_file.nginx_user_data.rendered
-
+  user_data          =  file("scripts/install-nginx.sh")
   instance_count     = 2
   attach_to_alb      = true
   target_group_arn   = module.alb_backend.target_group_arn

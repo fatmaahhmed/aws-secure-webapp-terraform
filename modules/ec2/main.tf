@@ -22,12 +22,12 @@ resource "aws_lb_target_group_attachment" "attach" {
 }
 
 
-data "template_file" "nginx_user_data" {
-  template = file("${path.module}/scripts/install-nginx.sh")
+# data "template_file" "nginx_user_data" {
+#   template = file("${path.module}/scripts/install-nginx.sh")
 
-  vars = {
-    internal_alb_dns = module.alb_backend.alb_dns_name
-  }
+#   vars = {
+#     internal_alb_dns = module.alb_backend.alb_dns_name
+#   }
 
-  # khalahaa variable bytakhed mn al output asln ally hwa mn alp daa 
-}
+#   # khalahaa variable bytakhed mn al output asln ally hwa mn alp daa 
+# }
